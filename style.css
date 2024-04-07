@@ -1,0 +1,515 @@
+@font-face {
+    font-family: GT_Flexa_Regular;
+    src: url(./assets/fonts/GT-Flexa-Regular-Italic-Trial.woff2);
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: GT_Flexa_Regular;
+    src: url(./assets/fonts/GT-Flexa-Regular-Trial.woff2);
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: GT_Flexa_X_Compressed_Black;
+    src: url(./assets/fonts/GT-Flexa-X-Compressed-Black-Trial.woff2);
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: GT_Flexa_X_Compressed_Bold;
+    src: url(./assets/fonts/GT-Flexa-X-Compressed-Bold-Trial.woff2);
+    font-weight: normal;
+    font-style: normal;
+}
+
+.GT_Flexa_Regular_italic {
+    font-family: GT_Flexa_Regular;
+    font-style: italic;
+}
+
+.GT_Flexa_Regular {
+    font-family: GT_Flexa_Regular;
+}
+
+.GT_Flexa_X_Compressed_Black {
+    font-family: GT_Flexa_X_Compressed_Black;
+}
+
+.GT_Flexa_X_Compressed_Bold {
+    font-family: GT_Flexa_X_Compressed_Bold;
+}
+
+:root {
+    --scrolling-duration: '1s';
+    --contentMargin: max(30px, 3vw);
+    --percent20: 20%;
+    --percent25: 25%;
+    --percent30: 30%;
+    --percent35: 35%;
+    --percent40: 40%;
+    --percent45: 45%;
+    --percent50: 50%;
+    --percent55: 55%;
+    --percent60: 60%;
+    --percent65: 65%;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    background-color: rgb(0, 4, 49);
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+#mainPage {
+    width: 100vw;
+    height: 100vh;
+}
+
+#bigBox {
+    position: absolute;
+    inset: 50px 50px 50px 50px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.yellowBorder {
+    border: solid rgb(255, 245, 0) 7px;
+}
+
+.yellowBorderBottom {
+    border-bottom: solid rgb(255, 245, 0) 7px;
+}
+
+.yellow {
+    color: rgb(255, 245, 0);
+}
+
+.headerTop {
+    font-family: GT_Flexa_X_Compressed_Black;
+    font-size: 14rem;
+    white-space: nowrap;
+}
+
+.headerBottom {
+    font-family: GT_Flexa_X_Compressed_Bold;
+    font-size: 4.5rem;
+    white-space: nowrap;
+}
+
+.scrollTextBis {
+    color: rgb(0, 4, 49);
+    background-color: transparent;
+    text-shadow:
+        -2px -2px 0 rgb(255, 245, 0),
+        2px -2px 0 rgb(255, 245, 0),
+        -2px 2px 0 rgb(255, 245, 0),
+        2px 2px 0 rgb(255, 245, 0);
+    margin-left: max(max(20px, 5vw), 50px);
+    margin-right: max(max(20px, 5vw), 50px);
+}
+
+.scrollTextBisSmall {
+    color: rgb(0, 4, 49);
+    background-color: transparent;
+    text-shadow:
+        -1px -1px 0 rgb(255, 245, 0),
+        1px -1px 0 rgb(255, 245, 0),
+        -1px 1px 0 rgb(255, 245, 0),
+        1px 1px 0 rgb(255, 245, 0);
+    margin-left: max(max(20px, 5vw), 50px);
+    margin-right: max(max(20px, 5vw), 50px);
+}
+
+.scroll {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 100%;
+}
+
+.srollLeftGroup {
+    animation: scroll-left 50s linear infinite;
+}
+
+.srollRightGroup {
+    animation: scroll-left 40s linear infinite reverse;
+}
+
+#content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    flex: 1;
+    position: relative;
+}
+
+#imageContainer {
+    position: absolute;
+    top: 10%;
+    bottom: 0;
+    left: max(30px, 3.5vw);
+    width: calc(var(--percent20) - max(30px, 3.5vw));
+    height: 90%;
+}
+
+.circle {
+    position: absolute;
+    width: 85%;
+    padding-top: 85%;
+    bottom: 2%;
+    left: 45px;
+    border-radius: 50%;
+    background-color: rgb(255, 245, 0);
+    transition: transform 0.5s ease-out;
+    transform: translateX(calc(var(--translateX) / 0.8 - 120px));
+}
+
+#img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: bottom left;
+    z-index: 1;
+    transition: transform 0.5s ease-out;
+    transform: translateX(calc(var(--translateX) / 3 - 10px));
+}
+
+
+
+#smallCircle {
+    position: absolute;
+    width: 44px;
+    height: 44px;
+    bottom: 13%;
+    left: 50%;
+    border-radius: 50%;
+    background-color: rgb(255, 245, 0);
+    z-index: 2;
+    transition: transform 0.5s ease-out;
+    transform: translateX(calc(var(--translateX) / 1.5 + 0px));
+}
+
+#textContainer {
+    position: absolute;
+    inset: 0;
+    left: calc(var(--percent20) + var(--contentMargin) / 2);
+    width: calc(100% - var(--percent20) - var(--contentMargin) * 2);
+    height: calc(100% - max(30px, 3.5vw) * 2);
+    padding: max(30px, 3.5vw);
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-left: -20px;
+}
+
+p {
+    font-size: 24px;
+}
+
+.inline {
+    display: inline;
+}
+
+.paragraph {
+    margin: 40px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+#mailImage {
+    margin-right: 10px;
+    height: 20px;
+    margin-bottom: -2.5px;
+    filter: invert(92%) sepia(46%) saturate(2820%) hue-rotate(351deg) brightness(99%) contrast(105%);
+}
+
+.underlineYellow {
+    border-bottom: solid rgb(255, 245, 0) 1px;
+}
+
+#circleContainer {
+    position: relative;
+    width: 70%;
+    padding-top: 70%;
+}
+
+.hide {
+    display: none;
+}
+
+
+
+@keyframes scroll-left {
+    0% {
+        transform: translateX(0%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+
+
+@media screen and (max-aspect-ratio: 3) {
+    #imageContainer {
+        width: calc(var(--percent25) - max(30px, 3.5vw));
+    }
+
+    #textContainer {
+        left: calc(var(--percent25) + var(--contentMargin) / 2);
+        width: calc(100% - var(--percent25) - var(--contentMargin) * 2);
+    }
+}
+
+@media screen and (max-aspect-ratio: 2.70) {
+    #imageContainer {
+        width: calc(var(--percent30) - max(30px, 3.5vw));
+    }
+
+    #textContainer {
+        left: calc(var(--percent30) + var(--contentMargin) / 2);
+        width: calc(100% - var(--percent30) - var(--contentMargin) * 2);
+    }
+}
+
+@media screen and (max-aspect-ratio: 2.40) {
+    #imageContainer {
+        width: calc(var(--percent35) - max(30px, 3.5vw));
+    }
+
+    #textContainer {
+        left: calc(var(--percent35) + var(--contentMargin) / 2);
+        width: calc(100% - var(--percent35) - var(--contentMargin) * 2);
+    }
+}
+
+@media screen and (max-aspect-ratio: 2.17) {
+    .headerTop {
+        font-size: 13rem;
+    }
+
+    .headerBottom {
+        font-size: 4.2rem;
+    }
+
+    #imageContainer {
+        width: calc(var(--percent40) - max(30px, 3.5vw));
+    }
+
+    #textContainer {
+        left: calc(var(--percent40) + var(--contentMargin) / 2);
+        width: calc(100% - var(--percent40) - var(--contentMargin) * 2);
+    }
+}
+
+@media screen and (max-aspect-ratio: 1.97) {
+    .headerTop {
+        font-size: 13rem;
+    }
+
+    .headerBottom {
+        font-size: 3.9rem;
+    }
+
+    #imageContainer {
+        width: calc(var(--percent40) - max(30px, 3.5vw));
+    }
+
+    #textContainer {
+        left: calc(var(--percent40) + var(--contentMargin) / 2);
+        width: calc(100% - var(--percent40) - var(--contentMargin) * 2);
+    }
+}
+
+@media screen and (max-aspect-ratio: 1.74) {
+    .headerTop {
+        font-size: 12rem;
+    }
+
+    .headerBottom {
+        font-size: 3.3rem;
+    }
+
+    #imageContainer {
+        width: calc(var(--percent40) - max(30px, 3.5vw));
+    }
+
+    #textContainer {
+        left: calc(var(--percent40) + var(--contentMargin) / 2);
+        width: calc(100% - var(--percent40) - var(--contentMargin) * 2);
+    }
+
+    p {
+        font-size: 22px;
+    }
+
+    #circleContainer {
+        display: none;
+    }
+
+    .circle {
+        display: unset;
+        width: 70%;
+        padding-top: 70%;
+        bottom: 6%;
+        left: 30px;
+    }
+}
+
+@media screen and (max-aspect-ratio: 1.58) {
+    .headerTop {
+        font-size: 11rem;
+    }
+
+    .headerBottom {
+        font-size: 3.3rem;
+    }
+
+    p {
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-aspect-ratio: 1.42) {
+    .headerTop {
+        font-size: 10rem;
+    }
+
+    .headerBottom {
+        font-size: 3rem;
+    }
+}
+
+@media screen and (max-aspect-ratio: 1.30) {
+
+    html,
+    body {
+        overflow-y: visible;
+    }
+
+    #bigBox {
+        position: absolute;
+        inset: 40px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .headerTop {
+        font-size: 8rem;
+    }
+
+    .headerBottom {
+        font-size: 2.7rem;
+    }
+
+    #content {
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        margin: 0;
+        overflow: auto;
+    }
+
+    #textContainer,
+    #imageContainer {
+        position: static;
+        inset: 0;
+    }
+
+    #textContainer {
+        width: calc(100% - 20%);
+        height: auto;
+        padding-left: 10%;
+        padding-right: 10%;
+        inset: 0;
+        margin: 0;
+    }
+
+    #imageContainer {
+        margin-top: 0px;
+        bottom: 0;
+        padding: 0;
+        margin-left: max(30px, 3.5vw);
+        width: calc(100% - max(30px, 3.5vw) * 2);
+        display: flex;
+    }
+
+    #img {
+        width: calc(100% - max(30px, 3.5vw) * 2);
+        height: auto;
+    }
+
+    #paragraphs {
+        width: 100%;
+    }
+
+    .paragraph {
+        margin-bottom: 30px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+
+    #mailImage {
+        margin-bottom: -4px;
+    }
+
+    .circle {
+        position: static;
+        width: 70%;
+        padding-top: 70%;
+        margin-left: 30px;
+        margin-top: 10px;
+    }
+
+    #smallCircle {
+        position: static;
+        margin-top: 58%;
+        margin-left: -18%;
+    }
+}
+
+@media screen and (max-aspect-ratio: 0.8) {
+    .paragraph {
+        margin-bottom: 50px;
+    }
+
+    #smallCircle {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+@media screen and (max-aspect-ratio: 0.55) {
+    #smallCircle {
+        width: 30px;
+        height: 30px;
+        margin-top: 60%;
+        margin-left: -24%;
+    }
+}
+
+@media screen and (max-aspect-ratio: 0.50) {
+    #smallCircle {
+        width: 26px;
+        height: 26px;
+        margin-top: 59%;
+        margin-left: -26%;
+    }
+}
